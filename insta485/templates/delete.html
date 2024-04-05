@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Insta485</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    
+        li {
+            display: inline;
+        }
+    
+        .flex { display : flex }
+    </style>
+</head>
+
+
+<div>
+    <a href="/"><b>Insta485</b></a>
+    <ul>    
+        <li style="position:fixed; right: 10px"><a href="/explore/">explore</a></li>
+        <li style="position:fixed; right: 75px"><a href="/users/{{logname}}/">{{logname}}</a></li>
+    </ul>
+</div>
+
+
+<p>{{logname}}</p>
+<!-- DO NOT CHANGE THIS -->
+<form action="/accounts/?target=/accounts/create/" method="post" enctype="multipart/form-data">
+    <input type="submit" name="delete" value="confirm delete account"/>
+    <input type="hidden" name="operation" value="delete"/>
+  </form>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Insta485</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    
+        li {
+            display: inline;
+        }
+    
+        .flex { display : flex }
+    </style>
+</head>
+
+
+<div>
+    <a href="/"><b>Insta485</b></a>
+    <ul>    
+        <li style="position:fixed; right: 10px"><a href="/explore/">explore</a></li>
+        <li style="position:fixed; right: 75px"><a href="/users/{{logname}}/">{{logname}}</a></li>
+    </ul>
+</div>
+
+<div>
+    <ul>
+        <li><img src="/uploads/{{user.filename}}/" alt="{{user.filename}} name" style="width:75px;height:75px;"></li>
+        <li><b>{{user.username}}</b></li>
+    </ul>
+</div>
+
+<!-- DO NOT CHANGE THIS (aside from where we say 'FIXME') -->
+<form action="/accounts/?target={{current_page}}/" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept="image/*"/>
+    <input type="text" name="fullname" value="{{user.fullname}}" required/>
+    <input type="text" name="email" value="{{user.email}}" required/>
+    <input type="submit" name="update" value="submit"/>
+    <input type="hidden" name="operation" value="edit_account"/>
+  </form>
+
+  <a href="/accounts/password/"><b>Change password</b></a>
+  <a href="/accounts/delete/"><b>Delete account</b></a>
+
+
+</html>

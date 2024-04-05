@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Insta485</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    
+        li {
+            display: inline;
+        }
+    
+        .flex { display : flex }
+    </style>
+</head>
+
+
+<div>
+    <a href="/"><b>Insta485</b></a>
+    <ul>    
+        <li style="position:fixed; right: 10px"><a href="/explore/">explore</a></li>
+        <li style="position:fixed; right: 75px"><a href="/users/{{logname}}/">{{logname}}</a></li>
+    </ul>
+</div>
+
+<div>
+    <ul>
+        <li><a href="/users/{{post.owner}}/"><img src="/uploads/{{post.pfp}}" alt="{{post.filename}} name" style="width:75px;height:75px;"></a></li>
+        <li><a href="/users/{{post.owner}}/">{{post.owner}}</a></li>
+        <li><a href="/posts/{{post.postid}}/"><p style = "right:400px">{{post.created}}</p></a></li>
+    </ul>
+    
+</div>
+<img src="/uploads/{{post.filename}}" alt = "img" width= "400" height="300">
+{% if post.num_likes == 1 %}
+<p>1 like</p>
+{% else %}
+<p>{{post.num_likes}} likes </p>
+{% endif %}
+{% if user_liked_post == false %}
+    <!-- DO NOT CHANGE THIS (aside from where we say 'FIXME') -->
+    <form action="/likes/?target={{current_page}}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="operation" value="like"/>
+        <input type="hidden" name="postid" value="{{post.postid}}"/>
+        <input type="submit" name="like" value="like"/>
+    </form>
+{% else %}
+    <!-- DO NOT CHANGE THIS (aside from where we say 'FIXME') -->
+    <form action="/likes/?target={{current_page}}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="operation" value="unlike"/>
+        <input type="hidden" name="postid" value="{{post.postid}}"/>
+        <input type="submit" name="unlike" value="unlike"/>
+    </form>
+{% endif %}
+{% for comment in post.comments %}
+    <div class="flex">
+        <a href="/users/{{comment.owner}}/"><b>{{comment.owner}}</b></a>
+        <p>     {{comment.text}}</p>
+    </div>
+    {% if logname == comment.owner %}
+    <!-- DO NOT CHANGE THIS (aside from where we say 'FIXME') -->
+    <form action="/comments/?target={{current_page}}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="operation" value="delete"/>
+        <input type="hidden" name="commentid" value="{{comment.commentid}}"/>
+        <input type="submit" name="uncomment" value="delete"/>
+    </form>
+    {% endif %}
+{% endfor %}
+<form action="/comments/?target={{current_page}}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="operation" value="create"/>
+    <input type="hidden" name="postid" value="{{post.postid}}"/>
+    <input type="text" name="text" required/>
+    <input type="submit" name="comment" value="comment"/>
+</form>
+
+{% if logname == post.owner %}
+<!-- DO NOT CHANGE THIS (aside from where we say 'FIXME') -->
+<form action="/posts/?target=/users/{{logname}}/" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="operation" value="delete"/>
+    <input type="hidden" name="postid" value="{{post.postid}}"/>
+    <input type="submit" name="delete" value="delete this post"/>
+  </form>
+{% endif %}
+</html>
+
+<!-- </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <h1>Users</h1>
+  {% for user in users %}
+  <p>{{user.username}} {{user.fullname}}</p>
+  {% endfor %}
+</body>
+</html> -->

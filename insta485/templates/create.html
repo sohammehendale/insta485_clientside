@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Insta485</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    
+        li {
+            display: inline;
+        }
+    
+        .flex { display : flex }
+    </style>
+</head>
+
+
+<div>
+    <a href="/"><b>Insta485</b></a>
+    <ul>    
+        <li style="position:fixed; right: 10px"><p>login</p></li>
+    </ul>
+</div>
+
+<!-- DO NOT CHANGE THIS (aside from styling) -->
+<form action="/accounts/?target=/" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required/>
+    <input type="text" name="fullname" required/>
+    <input type="text" name="username" required/>
+    <input type="text" name="email" required/>
+    <input type="password" name="password" required/>
+    <input type="submit" name="signup" value="sign up"/>
+    <input type="hidden" name="operation" value="create"/>
+  </form>
+
+  <a href="/accounts/login/"><b>Have an account? Log in</b></a>
+
+</html>
